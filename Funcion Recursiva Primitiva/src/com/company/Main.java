@@ -10,12 +10,28 @@ public class Main {
     private static int funcionSucesor(int x) {
         return x + 1;
     }
+    private static int funcionProyeccion(int x) { return x; }
+    private static int suma(int x, int y) {
+        if (y == 0)
+            return funcionProyeccion(x);
+        else
+            return funcionSucesor(suma(x, y-1));
+    }
+    private static int mult(int x, int y) {
+        if (y == 0)
+            return funcionNula(x);
+        else
+            return suma(mult(x, y-1), x);
+    }
 
+    /*IMPORTANTE:
+       Notacion: en este caso S(y) es y. y es y-1.
+     */
     private static int potencia(int x, int y) {
         if (y == 0) {
             return funcionSucesor(funcionNula(x));
         } else {
-            return potencia(x, y - 1) * y;
+            return  mult(potencia(x, y - 1), x);
         }
     }
 
